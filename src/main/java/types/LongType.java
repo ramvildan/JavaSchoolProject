@@ -4,7 +4,6 @@ import types.interfaces.Type;
 
 public class LongType implements Type<Long> {
 
-    // Для чего конструктор по умолчанию?
     public LongType() {
     }
 

@@ -11,7 +11,8 @@ import static utils.Utils.getString;
 
 public class JavaSchoolStarter {
 
-    public JavaSchoolStarter() {}
+    public JavaSchoolStarter() {
+    }
 
     private static final List<Map<String, Object>> db = new ArrayList<>();
 
@@ -27,18 +28,20 @@ public class JavaSchoolStarter {
             insertedValues.forEach(System.out::println);
         }
 
-        if(request.trim().toUpperCase().startsWith("UPDATE VALUE")) {
+        if (request.trim().toUpperCase().startsWith("UPDATE VALUE")) {
             List<Map<String, Object>> updatedValues = executeUpdate(request);
 
             updatedValues.forEach(System.out::println);
         }
 
-        if(request.startsWith("DELETE")) {
+        if (request.startsWith("DELETE")) {
+            List<Map<String, Object>> deletedValues = executeDelete(request);
 
+            deletedValues.forEach(System.out::println);
 
         }
 
-        if(request.contains("SELECT VALUE")) {
+        if (request.contains("SELECT VALUE")) {
 
 
         }
@@ -82,47 +85,50 @@ public class JavaSchoolStarter {
 
         String[] split = requestInfo.split("=");
 
-        if (split.length != 0) {
-            String requestInfoKey = getString(split[0]);
-            Object requestInfoValue = Tables.USER.get(requestInfoKey).getValue(split[1]);
+        String requestInfoKey = getString(split[0]);
+        Object requestInfoValue = Tables.USER.get(requestInfoKey).getValue(split[1]);
 
-            List<Map<String, Object>> updatedObjects = new ArrayList<>();
+        List<Map<String, Object>> updatedObjects = new ArrayList<>();
 
-            db.forEach(stringObjectMap -> {
-                if (stringObjectMap.get(requestInfoKey).equals(requestInfoValue)) {
-                    stringObjectMap.putAll(values);
+        db.forEach(stringObjectMap -> {
+            if (stringObjectMap.get(requestInfoKey).equals(requestInfoValue)) {
+                stringObjectMap.putAll(values);
 
-                    updatedObjects.add(stringObjectMap);
-                }
-            });
-
-            return updatedObjects;
-        } else {
-            List<Map<String, Object>> updatedObjects = new ArrayList<>();
-
-            db.forEach(stringObjectMap -> {
                 updatedObjects.add(stringObjectMap);
-            });
+            }
+        });
 
-            return updatedObjects;
-        }
+        return updatedObjects;
     }
 
-    //"DELETE WHERE ‘id’=3"
-    private void executeDelete(String request) {
+    private List<Map<String, Object>> executeDelete(String request) {
 
-        if (request.trim().toUpperCase().contains("WHERE") && !request.trim().toUpperCase().contains("AND")) {
+        List<String> deleteValues = Arrays.stream(request
+                        .replace("DELETE", "")
+                        .trim()
+                        .replaceAll(" ", "")
+                        .split("[wW][hH][eE][rR][eE]"))
+                .map(String::trim)
+                .toList();
 
-            List<String> deleteValues = Arrays.stream(request
-                            .replace("DELETE", "")
-                            .trim()
-                            .replaceAll(" ", "")
-                            .split("[wW][hH][eE][rR][eE]"))
-                    .map(String::trim)
-                    .toList();
+        String infoToDelete = deleteValues.get(1);
 
+        String[] split = infoToDelete.split("=");
 
-        }
+        String requestInfoKey = getString(split[0]);
+        Object requestInfoValue = Tables.USER.get(requestInfoKey).getValue(split[1]);
+
+        Map<String, Object> values = new HashMap<>();
+
+        List<Map<String, Object>> deletedObjects = new ArrayList<>();
+
+        db.forEach(stringObjectMap -> {
+            if (stringObjectMap.get(requestInfoKey).equals(requestInfoValue)) {
+                stringObjectMap.putAll(values);
+            }
+        });
+
+        return deletedObjects;
     }
 
     private static Map<String, Object> getValues(List<String> insertValues) {
