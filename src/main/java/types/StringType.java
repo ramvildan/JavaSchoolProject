@@ -2,6 +2,8 @@ package types;
 
 import types.interfaces.Type;
 
+import static utils.Utils.getString;
+
 public class StringType implements Type<String> {
 
     public StringType() {
@@ -9,8 +11,8 @@ public class StringType implements Type<String> {
 
     @Override
     public String getValue(String rawValue) {
-        if (rawValue.indexOf("'") >= 0 && rawValue.lastIndexOf("'") > 0) {
-            return rawValue.replaceAll("'", "");
+        if (rawValue.contains("'") || rawValue.contains("’") || rawValue.contains("‘")) {
+            return getString(rawValue);
         } else {
             System.out.println("Value is not String");
             throw new RuntimeException("Value is not String");

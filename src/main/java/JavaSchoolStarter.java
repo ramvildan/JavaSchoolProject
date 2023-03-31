@@ -21,22 +21,19 @@ public class JavaSchoolStarter {
             throw new Exception("Request is blank");
         }
 
-        if (request.startsWith("INSERT VALUES")) {
-
+        if (request.trim().toUpperCase().startsWith("INSERT VALUES")) {
             List<Map<String, Object>> insertedValues = executeInsert(request);
+
+            insertedValues.forEach(System.out::println);
         }
 
-        if(request.startsWith("UPDATE VALUE")) {
+        if(request.trim().toUpperCase().startsWith("UPDATE VALUE")) {
+            List<Map<String, Object>> updatedValues = executeUpdate(request);
 
-            String[] updateValues = request
-                    .replace("UPDATE VALUES", "")
-                    .trim()
-                    .replaceAll(" ", "")
-                    .split("[wW][hH][eE][rR][eE]");
-
+            updatedValues.forEach(System.out::println);
         }
 
-        if(request.contains("DELETE VALUE")) {
+        if(request.startsWith("DELETE")) {
 
 
         }
@@ -57,7 +54,79 @@ public class JavaSchoolStarter {
                 .map(String::trim)
                 .toList();
 
-        Map<String, Object> object = new HashMap<>();
+        Map<String, Object> object = getValues(insertValues);
+
+        db.add(object);
+
+        return List.of(object);
+    }
+
+    private List<Map<String, Object>> executeUpdate(String request) {
+
+        List<String> updateValues = Arrays.stream(request
+                        .replace("UPDATE VALUES", "")
+                        .trim()
+                        .replaceAll(" ", "")
+                        .split("[wW][hH][eE][rR][eE]"))
+                .map(String::trim)
+                .toList();
+
+        String valueToSet = updateValues.get(0);
+        String requestInfo = updateValues.get(1);
+
+        Map<String, Object> values = getValues(Arrays
+                .stream(valueToSet
+                        .split(","))
+                .map(String::trim)
+                .toList());
+
+        String[] split = requestInfo.split("=");
+
+        if (split.length != 0) {
+            String requestInfoKey = getString(split[0]);
+            Object requestInfoValue = Tables.USER.get(requestInfoKey).getValue(split[1]);
+
+            List<Map<String, Object>> updatedObjects = new ArrayList<>();
+
+            db.forEach(stringObjectMap -> {
+                if (stringObjectMap.get(requestInfoKey).equals(requestInfoValue)) {
+                    stringObjectMap.putAll(values);
+
+                    updatedObjects.add(stringObjectMap);
+                }
+            });
+
+            return updatedObjects;
+        } else {
+            List<Map<String, Object>> updatedObjects = new ArrayList<>();
+
+            db.forEach(stringObjectMap -> {
+                updatedObjects.add(stringObjectMap);
+            });
+
+            return updatedObjects;
+        }
+    }
+
+    //"DELETE WHERE ‘id’=3"
+    private void executeDelete(String request) {
+
+        if (request.trim().toUpperCase().contains("WHERE") && !request.trim().toUpperCase().contains("AND")) {
+
+            List<String> deleteValues = Arrays.stream(request
+                            .replace("DELETE", "")
+                            .trim()
+                            .replaceAll(" ", "")
+                            .split("[wW][hH][eE][rR][eE]"))
+                    .map(String::trim)
+                    .toList();
+
+
+        }
+    }
+
+    private static Map<String, Object> getValues(List<String> insertValues) {
+        Map<String, Object> values = new HashMap<>();
 
         for (String insertValue : insertValues) {
             List<String> keyValues = Arrays
@@ -73,12 +142,10 @@ public class JavaSchoolStarter {
             if (Tables.USER.containsKey(key)) {
                 Type<?> type = Tables.USER.get(key);
                 Object value = type.getValue(rawValue);
-                object.put(key, value);
+                values.put(key, value);
             }
         }
 
-        db.add(object);
-
-        return List.of(object);
+        return values;
     }
 }

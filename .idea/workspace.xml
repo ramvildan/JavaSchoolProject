@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="811ff09e-ce64-4d21-80f0-cc9ca3a265d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/JavaSchoolStarter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/Bool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/Dbl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/Lng.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/Str.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/Tables.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/interfaces/Type.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
+    <list default="true" id="811ff09e-ce64-4d21-80f0-cc9ca3a265d1" name="Changes" comment="Table of types">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/JavaSchoolStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JavaSchoolStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/types/StringType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/types/StringType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/ramil/IdeaProjects/JavaSchoolProject",
+    "last_opened_file_path": "C:/Users/ramil/IdeaProjects/database",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,7 +51,7 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.ATM">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="ATM" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ATM" />
       <module name="JavaSchoolProject" />
@@ -79,8 +68,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ATM" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ATM" />
       </list>
     </recent_temporary>
   </component>
@@ -99,7 +88,23 @@
       <workItem from="1679923641840" duration="2784000" />
       <workItem from="1680000452271" duration="10276000" />
       <workItem from="1680083848949" duration="7267000" />
+      <workItem from="1680175988258" duration="14158000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1680176166695</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680176166695</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Table of types">
+      <created>1680176330555</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680176330555</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,5 +120,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Table of types" />
+    <option name="LAST_COMMIT_MESSAGE" value="Table of types" />
   </component>
 </project>
