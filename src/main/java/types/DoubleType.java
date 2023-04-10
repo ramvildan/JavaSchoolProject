@@ -10,7 +10,8 @@ public class DoubleType implements Type<Double> {
     @Override
     public Double getValue(String rawValue) {
         try {
-            return Double.parseDouble(rawValue);
+            String trim = rawValue.trim().replaceAll(" ","");
+            return Double.parseDouble(trim);
         } catch (Exception ex) {
             System.out.println("Value is not Double");
             throw new RuntimeException("Value is not Double");

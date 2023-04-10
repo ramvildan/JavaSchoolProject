@@ -20,6 +20,7 @@ public class Main {
 //            List<Map<String, Object>> result6 = starter.execute("SELECT WHERE ‘age’>=30 and ‘lastName’ ilike ‘%п%");
             System.out.println("-------------");
             List<Map<String, Object>> result7 = starter.execute("DELETE WHERE ‘id’=3");
+            System.out.println("-------------");
 
         } catch (Exception e) {
             throw new RuntimeException(e);

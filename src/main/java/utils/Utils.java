@@ -2,6 +2,6 @@ package utils;
 
 public class Utils {
     public static String getString (String rawValue) {
-        return rawValue.replaceAll("^['’‘]", "").replaceAll("['’‘]$", "");
+        return rawValue.trim().replaceAll("^['’‘]", "").replaceAll("['’‘]$", "");
     }
 }
