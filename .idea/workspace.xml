@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="811ff09e-ce64-4d21-80f0-cc9ca3a265d1" name="Changes" comment="Added delete method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Condition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Conditions.java" afterDir="false" />
+    <list default="true" id="811ff09e-ce64-4d21-80f0-cc9ca3a265d1" name="Changes" comment="Added where conditions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Conditions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/JavaSchoolStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JavaSchoolStarter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/types/BooleanType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/types/BooleanType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/types/DoubleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/types/DoubleType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/types/LongType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/types/LongType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +94,7 @@
       <workItem from="1680521596762" duration="306000" />
       <workItem from="1680886359401" duration="1782000" />
       <workItem from="1680982333808" duration="1542000" />
-      <workItem from="1681122604749" duration="8767000" />
+      <workItem from="1681122604749" duration="24512000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1680176166695</created>
@@ -128,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680297177242</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added where conditions">
+      <created>1681133067827</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681133067827</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +153,18 @@
     <MESSAGE value="Table of types" />
     <MESSAGE value="Added update and edited StringType.java" />
     <MESSAGE value="Added delete method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added delete method" />
+    <MESSAGE value="Added where conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added where conditions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Conditions.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

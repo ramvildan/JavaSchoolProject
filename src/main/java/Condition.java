@@ -19,13 +19,13 @@ public class Condition {
         Condition conditionObject = null;
 
         if (condition.contains("=")) {
-            String[] split = condition.split("=");
-            conditionObject = new Condition(Conditions.EQUALS, getString(split[0]), split[1]);
-        }
-
-        if (condition.contains("!=")) {
-            String[] split = condition.split("!=");
-            conditionObject = new Condition(Conditions.NOT_EQUALS, getString(split[0]), split[1]);
+            if (condition.contains("!")) {
+                String[] split = condition.split("!=");
+                conditionObject = new Condition(Conditions.NOT_EQUALS, getString(split[0]), split[1]);
+            } else {
+                String[] split = condition.split("=");
+                conditionObject = new Condition(Conditions.EQUALS, getString(split[0]), split[1]);
+            }
         }
 
         if (condition.contains("like")) {
@@ -38,24 +38,24 @@ public class Condition {
             conditionObject = new Condition(Conditions.LIKE_INCENTIVE, getString(split[0]), split[1]);
         }
 
-        if (condition.contains(">=")) {
-            String[] split = condition.split(">=");
-            conditionObject = new Condition(Conditions.GTE, getString(split[0]), split[1]);
-        }
-
-        if (condition.contains("<=")) {
-            String[] split = condition.split("<=");
-            conditionObject = new Condition(Conditions.LTE, getString(split[0]), split[1]);
-        }
-
         if (condition.contains(">")) {
-            String[] split = condition.split(">");
-            conditionObject = new Condition(Conditions.GT, getString(split[0]), split[1]);
+            if (condition.contains("=")) {
+                String[] split = condition.split(">=");
+                conditionObject = new Condition(Conditions.GTE, getString(split[0]), split[1]);
+            } else {
+                String[] split = condition.split(">");
+                conditionObject = new Condition(Conditions.GT, getString(split[0]), split[1]);
+            }
         }
 
         if (condition.contains("<")) {
-            String[] split = condition.split("<");
-            conditionObject = new Condition(Conditions.LT, getString(split[0]), split[1]);
+            if (condition.contains("=")) {
+                String[] split = condition.split("<=");
+                conditionObject = new Condition(Conditions.LTE, getString(split[0]), split[1]);
+            } else {
+                String[] split = condition.split("<");
+                conditionObject = new Condition(Conditions.LT, getString(split[0]), split[1]);
+            }
         }
 
         if (Objects.isNull(conditionObject)) {

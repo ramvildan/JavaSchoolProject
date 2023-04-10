@@ -42,9 +42,10 @@ public class JavaSchoolStarter {
 
         }
 
-        if (request.contains("SELECT VALUE")) {
+        if (request.contains("SELECT")) {
+            List<Map<String, Object>> selectedValues = executeSelect(request);
 
-
+            selectedValues.forEach(System.out::println);
         }
 
         return new ArrayList<>();
@@ -67,7 +68,7 @@ public class JavaSchoolStarter {
 
     private List<Map<String, Object>> executeUpdate(String request) {
 
-        List<String> updateValuesWithWhere = Arrays.stream(request
+        List<String> updateValues = Arrays.stream(request
                         .replace("UPDATE VALUES", "")
                         .trim()
                         .replaceAll(" ", "")
@@ -75,9 +76,9 @@ public class JavaSchoolStarter {
                 .map(String::trim)
                 .toList();
 
-        Map<String, Object> valuesToSet = valuesToUpdate(updateValuesWithWhere.get(0));
+        Map<String, Object> valuesToSet = valuesToUpdate(updateValues.get(0));
 
-        String requestInfoToUpdate = updateValuesWithWhere.get(1);
+        String requestInfoToUpdate = updateValues.get(1);
 
         List<Condition> whereConditions = getWhereConditions(requestInfoToUpdate);
 
@@ -122,6 +123,31 @@ public class JavaSchoolStarter {
         return deletedObjects;
     }
 
+    private List<Map<String, Object>> executeSelect(String request) {
+
+        List<String> selectValues = Arrays.stream(request
+                        .replace("SELECT", "")
+                        .trim()
+                        .replaceAll(" ", "")
+                        .split("[wW][hH][eE][rR][eE]"))
+                .map(String::trim)
+                .toList();
+
+        String requestInfoToSelect = selectValues.get(1);
+
+        List<Condition> whereConditions = getWhereConditions(requestInfoToSelect);
+
+        List<Map<String, Object>> selectObjects = new ArrayList<>();
+
+        for (Map<String, Object> stringObjectMap : db) {
+            if (isObjectMatches(whereConditions, stringObjectMap)) {
+                selectObjects.add(stringObjectMap);
+            }
+        }
+
+        return selectObjects;
+    }
+
     private static Map<String, Object> valuesToUpdate(String valuesToSet) {
 
         String[] split = valuesToSet
@@ -159,7 +185,7 @@ public class JavaSchoolStarter {
 
     private static List<Condition> getWhereConditions(String requestWhereInfo) {
 
-        String[] andConditions = requestWhereInfo.split("[Aa],[Nn],[Dd]");
+        String[] andConditions = requestWhereInfo.split("[Aa][Nn][Dd]");
         List<Condition> conditionList = new ArrayList<>();
 
         for (String someCondition : andConditions) {

@@ -39,8 +39,8 @@ public enum Conditions {
             String stringA = String.valueOf(a);
             String stringB = String.valueOf(b);
 
-            boolean isObjectLong = a instanceof LongType && b instanceof LongType;
-            boolean isObjectDouble = a instanceof DoubleType && b instanceof DoubleType;
+            boolean isObjectLong = a instanceof Long && b instanceof Long;
+            boolean isObjectDouble = a instanceof Double && b instanceof Double;
 
             switch (this.value) {
                 case "=" -> {
@@ -66,19 +66,19 @@ public enum Conditions {
                     }
                 }
                 case "ilike" -> {
-                    boolean b1 = stringB.startsWith("%");
-                    boolean b2 = stringB.endsWith("%");
+                    boolean startWithPercent = stringB.startsWith("%");
+                    boolean endWithPercent = stringB.endsWith("%");
 
-                    if (b1 && b2) {
-                        return stringA.contains(stringB.toLowerCase().replaceAll("%", ""));
+                    if (startWithPercent && endWithPercent) {
+                        return stringA.toLowerCase().contains(stringB.toLowerCase().replaceAll("%", ""));
                     }
 
-                    if (b1) {
-                        return stringA.startsWith(stringB.toLowerCase().replaceAll("%", ""));
+                    if (startWithPercent) {
+                        return stringA.toLowerCase().endsWith(stringB.toLowerCase().replaceAll("%", ""));
                     }
 
-                    if (b2) {
-                        return stringA.endsWith(stringB.toLowerCase().replaceAll("%", ""));
+                    if (endWithPercent) {
+                        return stringA.toLowerCase().startsWith(stringB.toLowerCase().replaceAll("%", ""));
                     }
                 }
                 case ">=" -> {
