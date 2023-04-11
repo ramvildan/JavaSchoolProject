@@ -1,6 +1,6 @@
-package utils;
+package com.digdes.school.utils;
 
-public class Utils {
+public class Util {
     public static String getString (String rawValue) {
         return rawValue.trim().replaceAll("^['’‘]", "").replaceAll("['’‘]$", "");
     }

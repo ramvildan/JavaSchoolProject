@@ -1,4 +1,4 @@
-package types.interfaces;
+package com.digdes.school.types.interfaces;
 
 public interface Type<T> {
 

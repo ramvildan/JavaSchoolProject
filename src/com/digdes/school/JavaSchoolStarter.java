@@ -1,5 +1,7 @@
-import types.interfaces.Type;
-import types.Tables;
+package com.digdes.school;
+
+import com.digdes.school.types.Table;
+import com.digdes.school.types.interfaces.Type;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static utils.Utils.getString;
+import static com.digdes.school.utils.Util.getString;
 
 public class JavaSchoolStarter {
 
@@ -24,28 +26,19 @@ public class JavaSchoolStarter {
         }
 
         if (request.trim().toUpperCase().startsWith("INSERT VALUES")) {
-            List<Map<String, Object>> insertedValues = executeInsert(request);
-
-            insertedValues.forEach(System.out::println);
+            return executeInsert(request);
         }
 
         if (request.trim().toUpperCase().startsWith("UPDATE VALUE")) {
-            List<Map<String, Object>> updatedValues = executeUpdate(request);
-
-            updatedValues.forEach(System.out::println);
+            return executeUpdate(request);
         }
 
-        if (request.startsWith("DELETE")) {
-            List<Map<String, Object>> deletedValues = executeDelete(request);
-
-            db.forEach(System.out::println);
-
+        if (request.trim().toUpperCase().startsWith("DELETE")) {
+            return executeDelete(request);
         }
 
-        if (request.contains("SELECT")) {
-            List<Map<String, Object>> selectedValues = executeSelect(request);
-
-            selectedValues.forEach(System.out::println);
+        if (request.trim().toUpperCase().contains("SELECT")) {
+            return executeSelect(request);
         }
 
         return new ArrayList<>();
@@ -133,19 +126,23 @@ public class JavaSchoolStarter {
                 .map(String::trim)
                 .toList();
 
-        String requestInfoToSelect = selectValues.get(1);
+        List<Map<String, Object>> selectedObjects = new ArrayList<>();
 
-        List<Condition> whereConditions = getWhereConditions(requestInfoToSelect);
+        if (selectValues.size() > 1) {
+            String requestInfoToSelect = selectValues.get(1);
 
-        List<Map<String, Object>> selectObjects = new ArrayList<>();
+            List<Condition> whereConditions = getWhereConditions(requestInfoToSelect);
 
-        for (Map<String, Object> stringObjectMap : db) {
-            if (isObjectMatches(whereConditions, stringObjectMap)) {
-                selectObjects.add(stringObjectMap);
+            for (Map<String, Object> stringObjectMap : db) {
+                if (isObjectMatches(whereConditions, stringObjectMap)) {
+                    selectedObjects.add(stringObjectMap);
+                }
             }
-        }
 
-        return selectObjects;
+        } else {
+            selectedObjects.addAll(db);
+        }
+        return selectedObjects;
     }
 
     private static Map<String, Object> valuesToUpdate(String valuesToSet) {
@@ -173,10 +170,12 @@ public class JavaSchoolStarter {
 
             String key = getString(rawKey);
 
-            if (Tables.USER.containsKey(key)) {
-                Type<?> type = Tables.USER.get(key);
+            if (Table.USER.containsKey(key)) {
+                Type<?> type = Table.USER.get(key);
                 Object value = type.getValue(rawValue);
                 values.put(key, value);
+            } else {
+                throw new RuntimeException("No such column exists");
             }
         }
 
@@ -207,7 +206,7 @@ public class JavaSchoolStarter {
                 .stream()
                 .filter(condition -> {
                     String key = condition.getKey();
-                    Object value = Tables.USER.get(key).getValue(condition.getValue());
+                    Object value = Table.USER.get(key).getValue(condition.getValue());
                     return condition.operator.compare(stringObjectMap.get(key), value);
                 })
                 .toList();

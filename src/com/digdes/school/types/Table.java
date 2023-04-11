@@ -1,10 +1,10 @@
-package types;
+package com.digdes.school.types;
 
-import types.interfaces.Type;
+import com.digdes.school.types.interfaces.Type;
 
 import java.util.Map;
 
-public class Tables {
+public class Table {
 
     public static Map<String, Type> USER = Map.of(
             "id", new LongType(),

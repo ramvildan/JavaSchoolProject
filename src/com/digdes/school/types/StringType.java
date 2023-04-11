@@ -1,8 +1,9 @@
-package types;
+package com.digdes.school.types;
 
-import types.interfaces.Type;
 
-import static utils.Utils.getString;
+import com.digdes.school.types.interfaces.Type;
+
+import static com.digdes.school.utils.Util.getString;
 
 public class StringType implements Type<String> {
 

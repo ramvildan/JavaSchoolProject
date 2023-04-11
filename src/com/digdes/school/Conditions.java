@@ -1,8 +1,6 @@
-import types.DoubleType;
-import types.LongType;
+package com.digdes.school;
 
 import java.util.List;
-import java.util.Locale;
 
 public enum Conditions {
 

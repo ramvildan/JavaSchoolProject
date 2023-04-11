@@ -1,6 +1,7 @@
-package types;
+package com.digdes.school.types;
 
-import types.interfaces.Type;
+
+import com.digdes.school.types.interfaces.Type;
 
 public class DoubleType implements Type<Double> {
 

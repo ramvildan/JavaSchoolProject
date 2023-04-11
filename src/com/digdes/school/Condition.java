@@ -1,6 +1,8 @@
+package com.digdes.school;
+
 import java.util.Objects;
 
-import static utils.Utils.getString;
+import static com.digdes.school.utils.Util.getString;
 
 public class Condition {
 
