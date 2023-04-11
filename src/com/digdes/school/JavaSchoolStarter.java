@@ -75,6 +75,12 @@ public class JavaSchoolStarter {
 
         List<Condition> whereConditions = getWhereConditions(requestInfoToUpdate);
 
+        for (Condition el : whereConditions) {
+            if (!Table.USER.containsKey(el.getKey())) {
+                throw new RuntimeException("No such column exists: " + el.getKey());
+            }
+        }
+
         List<Map<String, Object>> updatedObjects = new ArrayList<>();
 
         for (Map<String, Object> stringObjectMap : db) {
@@ -100,6 +106,12 @@ public class JavaSchoolStarter {
         String requestInfoToDelete = deleteValues.get(1);
 
         List<Condition> whereConditions = getWhereConditions(requestInfoToDelete);
+
+        for (Condition el : whereConditions) {
+            if (!Table.USER.containsKey(el.getKey())) {
+                throw new RuntimeException("No such column exists: " + el.getKey());
+            }
+        }
 
         List<Map<String, Object>> deletedObjects = new ArrayList<>();
 
@@ -132,6 +144,12 @@ public class JavaSchoolStarter {
             String requestInfoToSelect = selectValues.get(1);
 
             List<Condition> whereConditions = getWhereConditions(requestInfoToSelect);
+
+            for (Condition el : whereConditions) {
+                if (!Table.USER.containsKey(el.getKey())) {
+                    throw new RuntimeException("No such column exists: " + el.getKey());
+                }
+            }
 
             for (Map<String, Object> stringObjectMap : db) {
                 if (isObjectMatches(whereConditions, stringObjectMap)) {
@@ -207,7 +225,7 @@ public class JavaSchoolStarter {
                 .filter(condition -> {
                     String key = condition.getKey();
                     Object value = Table.USER.get(key).getValue(condition.getValue());
-                    return condition.operator.compare(stringObjectMap.get(key), value);
+                    return condition.getOperator().compare(stringObjectMap.get(key), value);
                 })
                 .toList();
     }

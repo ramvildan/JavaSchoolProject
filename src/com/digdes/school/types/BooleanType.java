@@ -10,7 +10,7 @@ public class BooleanType implements Type<Boolean> {
     @Override
     public Boolean getValue(String rawValue) {
         if (rawValue.startsWith("true") || rawValue.startsWith("false")) {
-            String trim = rawValue.trim().replaceAll(" ","");
+            String trim = rawValue.trim().replaceAll(" ", "");
 
             return Boolean.valueOf(trim);
         } else {

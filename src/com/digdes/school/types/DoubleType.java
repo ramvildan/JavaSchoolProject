@@ -11,7 +11,7 @@ public class DoubleType implements Type<Double> {
     @Override
     public Double getValue(String rawValue) {
         try {
-            String trim = rawValue.trim().replaceAll(" ","");
+            String trim = rawValue.trim().replaceAll(" ", "");
             return Double.parseDouble(trim);
         } catch (Exception ex) {
             System.out.println("Value is not Double");

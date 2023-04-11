@@ -11,7 +11,7 @@ public class LongType implements Type<Long> {
     @Override
     public Long getValue(String rawValue) {
         try {
-            String trim = rawValue.trim().replaceAll(" ","");
+            String trim = rawValue.trim().replaceAll(" ", "");
             return Long.parseLong(trim);
         } catch (Exception ex) {
             System.out.println("Value is not Long");

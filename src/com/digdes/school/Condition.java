@@ -6,9 +6,9 @@ import static com.digdes.school.utils.Util.getString;
 
 public class Condition {
 
-    Conditions operator;
-    String key;
-    String value;
+    private Conditions operator;
+    private String key;
+    private String value;
 
 
     public Condition(Conditions operator, String key, String value) {
@@ -61,7 +61,7 @@ public class Condition {
         }
 
         if (Objects.isNull(conditionObject)) {
-            throw  new RuntimeException("Bad condition...");
+            throw new RuntimeException("Bad condition...");
         }
 
         return conditionObject;
